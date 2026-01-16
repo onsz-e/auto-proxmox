@@ -31,11 +31,15 @@ add_pve_repositories() {
     local NO_SUB_REPO_LIST_FILE="$SOURCES_LOCATION/proxmox.sources"
     local ENABLED_FALSE="Enabled: false"
 
+    log "Checking for repositories..."
+
     if [ -f "$ENTERPRISE_LIST_FILE" ] && ! grep -q "$ENABLED_FALSE" "$ENTERPRISE_LIST_FILE"; then
+        log "Disabling Enterprise PVE repository."
         echo "$ENABLED_FALSE" >> "$ENTERPRISE_LIST_FILE"
     fi
 
-    if [ -f "$NO_SUB_REPO_LIST_FILE" ]; then  
+    if [ ! -f "$NO_SUB_REPO_LIST_FILE" ]; then  
+        log "Creating No-Subscription Proxmox source."
         cat <<EOF > "$NO_SUB_REPO_LIST_FILE"
 Types: deb
 URIs: http://download.proxmox.com/debian/pve
