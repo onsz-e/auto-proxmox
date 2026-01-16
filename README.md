@@ -1,2 +1,2 @@
 To run the sript use:
-curl -sSL https://raw.githubusercontent.com/onsz-e/proxmox-configuration/main/init.sh | bash
+curl -sSL https://raw.githubusercontent.com/onsz-e/auto-proxmox/main/init.sh | bash
