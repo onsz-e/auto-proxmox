@@ -138,7 +138,7 @@ datacenter_firewall() {
     if compgen -G "$DC_FIRWALL/*.fw" > /dev/null; then
         log "Firewall already turned on!"
     else
-        curl -sS -fL "$GITHUB_URL"/configs/firewall/30-hardening.conf.sh > "$DC_FIRWALL"/cluster.fw
+        curl -sS -fL "$GITHUB_URL"/configs/firewall/datacenter.fw > "$DC_FIRWALL"/cluster.fw
         systemctl reload pve-firewall
         log "Succesfully configured Datacenter Firewall!"
     fi
