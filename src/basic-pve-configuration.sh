@@ -156,6 +156,7 @@ update_motd() {
     else
         log "Nothing to delete... Proceed with creation"
     
+    fi
     log "Fetching the script."
     curl -sS -fL "$GITHUB_URL"/configs/motd > "$DYN_MOTD"
     
