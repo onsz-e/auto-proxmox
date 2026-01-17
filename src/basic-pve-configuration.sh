@@ -72,7 +72,7 @@ EOF
 update_pve() {
     log "Running Proxmox updates!"
     pveupdate
-    pveupgrade -y
+    pveupgrade
     log "Update succeeded!"
 }
 

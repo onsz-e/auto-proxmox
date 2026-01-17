@@ -5,5 +5,5 @@ SHELL=/bin/bash
 PATH=/usr/sbin:/usr/bin:/sbin:/bin
 
 0 3 * * 0 root flock -n /var/run/pveupdate.lock /usr/bin/pveupdate >> /var/log/proxmox-update.log 2>&1
-5 3 * * 0 root flock -n /var/run/pveupgrade.lock /usr/bin/pveupgrade -y >> /var/log/proxmox-upgrade.log 2>&1
+5 3 * * 0 root flock -n /var/run/pveupgrade.lock /usr/bin/pveupgrade >> /var/log/proxmox-upgrade.log 2>&1
 15 3 * * 0 root /usr/sbin/reboot >> /var/log/proxmox-reboot.log 2>&1
