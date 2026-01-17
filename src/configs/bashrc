@@ -1,0 +1,48 @@
+# Exit early for non-interactive shells
+#[[ $- != *i* ]] && return
+
+# ---------- Safety ----------
+#set -o noclobber
+#set -o pipefail
+
+# ---------- History ----------
+HISTSIZE=10000
+HISTFILESIZE=20000
+HISTCONTROL=ignoreboth:erasedups
+HISTTIMEFORMAT='%F %T '
+shopt -s histappend
+PROMPT_COMMAND='history -a'
+
+# ---------- Environment ----------
+export EDITOR=vim
+export VISUAL=vim
+export PAGER=less
+
+# ---------- Prompt ----------
+PS1='\[\e[31m\]\u@\h:\w# \[\e[0m\]'
+
+# ---------- Aliases ----------
+alias ll='ls -lah --color=auto'
+alias dfh='df -hT'
+alias duh='du -h --max-depth=1'
+alias freeh='free -h'
+alias ipt='iptables -L -n -v'
+alias pfs='pve-firewall status'
+
+# ---------- Quality of life ----------
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# ---------- Networking sanity ----------
+alias ports='ss -tulpen'
+alias pingg='ping -c 3'
+
+# ---------- Proxmox shortcuts ----------
+alias pvever='pveversion -v'
+alias pvestat='pvesh get /nodes/$(hostname)/status'
+
+# ---------- Completion ----------
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi

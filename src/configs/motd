@@ -1,0 +1,37 @@
+#!/bin/bash
+
+HOSTNAME=$(hostname)
+IP=$(hostname -I | awk '{print $1}')
+UPTIME=$(uptime -p)
+LOAD=$(cut -d ' ' -f1-3 /proc/loadavg)
+KERNEL=$(uname -r)
+PVEVER=$(pveversion | head -n1)
+
+MEM_USED=$(free -h | awk '/Mem:/ {print $3 "/" $2}')
+DISK_USED=$(df -h / | awk 'NR==2 {print $3 "/" $2}')
+
+RED="\e[31m"
+GREEN="\e[32m"
+CYAN="\e[36m"
+RESET="\e[0m"
+
+echo -e "${RED}"
+echo "═══════════════════════════════════════════════"
+echo "   Proxmox Virtual Environment Host"
+echo "═══════════════════════════════════════════════"
+echo -e "${RESET}"
+
+echo -e "${CYAN}Host:${RESET}        $HOSTNAME"
+echo -e "${CYAN}IP Address:${RESET}  $IP"
+echo -e "${CYAN}Uptime:${RESET}     $UPTIME"
+echo -e "${CYAN}Load Avg:${RESET}   $LOAD"
+echo -e "${CYAN}Kernel:${RESET}     $KERNEL"
+echo -e "${CYAN}Proxmox:${RESET}    $PVEVER"
+
+echo
+echo -e "${CYAN}Memory:${RESET}     $MEM_USED"
+echo -e "${CYAN}Root FS:${RESET}    $DISK_USED"
+
+echo
+echo -e "${GREEN}Authorized access only.${RESET}"
+echo

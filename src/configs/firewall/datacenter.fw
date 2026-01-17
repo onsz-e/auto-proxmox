@@ -1,0 +1,23 @@
+[OPTIONS]
+enable: 1
+policy_in: DROP
+policy_out: ACCEPT
+log_level_in: info
+
+[RULES]
+# Allow established connections
+IN ACCEPT -m state --state ESTABLISHED,RELATED
+
+# Allow loopback
+IN ACCEPT -source 127.0.0.1
+
+# Allow SSH from LAN
+IN ACCEPT -source 192.168.0.0/16 -p tcp -dport 22
+
+# Allow Web UI (8006) from LAN
+IN ACCEPT -source 192.168.0.0/16 -p tcp -dport 8006
+
+# Optional ICMP for ping/troubleshooting
+IN ACCEPT -p icmp
+
+# More custom rules:
