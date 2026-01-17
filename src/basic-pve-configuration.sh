@@ -108,9 +108,9 @@ configure_ssh() {
         log "$SSHDPATH is not empty!"
     else
         log "Fetching config files..."
-        curl -sS -fL "$GITHUB_URL/$CONFIGS_PATH"/10-auth.conf.sh > "$SSHDPATH"/10-auth.conf
-        curl -sS -fL "$GITHUB_URL/$CONFIGS_PATH"/20-root.conf.sh > "$SSHDPATH"/20-root.conf
-        curl -sS -fL "$GITHUB_URL/$CONFIGS_PATH"/30-hardening.conf.sh > "$SSHDPATH"/30-hardening.conf
+        curl -sS -fL "$GITHUB_URL/$CONFIGS_PATH"/10-auth.conf > "$SSHDPATH"/10-auth.conf
+        curl -sS -fL "$GITHUB_URL/$CONFIGS_PATH"/20-root.conf > "$SSHDPATH"/20-root.conf
+        curl -sS -fL "$GITHUB_URL/$CONFIGS_PATH"/30-hardening.conf > "$SSHDPATH"/30-hardening.conf
     
         log "Reloading SSH..."
         systemctl reload ssh
