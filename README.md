@@ -24,8 +24,8 @@ This automation script provides a comprehensive initial configuration for Proxmo
   - git (version control)
 
 - **System Monitoring**
-  - SMART disk monitoring configuration
-  - Storage layout verification
+  - Storage layout verification and status checking
+  - SMART disk monitoring preparation (monitoring capability check only)
 
 - **Automated Maintenance**
   - Configures automatic system updates via cron jobs
@@ -37,7 +37,7 @@ This automation script provides a comprehensive initial configuration for Proxmo
   - Improved terminal experience
 
 - **Automatic Reboot**
-  - Reboots the system if required after updates
+  - Reboots the system only when required (based on `/var/run/reboot-required` file)
 
 ## Compatibility
 
