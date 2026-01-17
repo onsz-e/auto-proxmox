@@ -123,7 +123,7 @@ cron_jobs() {
     local CRON_AUTOUPDATE="$CRON_DIR/auto-update"
 
     log "Configuring cron jobs!"
-    curl -sS -fL "$GITHUB_URL"/cron/auto-update > "$CRON_AUTOUPDATE"
+    curl -sS -fL "$GITHUB_URL"/configs/cron/auto-update > "$CRON_AUTOUPDATE"
 
     log "Setting permissions."
     chown root:root "$CRON_AUTOUPDATE"
@@ -150,7 +150,7 @@ update_motd() {
     local DYN_MOTD="/etc/update-motd.d/99-proxmox"
 
     log "Checking for an exisiting static motd file..."
-    if -f "$MOTD_FILE"; then
+    if [ -f "$MOTD_FILE" ]; then
         rm -f "$MOTD_FILE"
         log "Deleted static motd file. Proceeding with creation."
     else
