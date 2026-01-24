@@ -197,9 +197,6 @@ main() {
 
 main
 
-# To-Do:
-# Prepare report from the script, after all run.
-
 ### Extended version
 # 1. Adding SSH key mechanism - user input
 #. 2. Additional user creation - user input
@@ -214,8 +211,3 @@ main
 # Adding EMAIL alers!
 # 1. Roles and permissions provisioning.
 # 8. Initial Network configuration.
-
-# Improvements:
-# 1. Better package installation. Add for loop?
-# 2. Fix smartd monitoring - it's disabled...
-# 3. Better cronjobs handling... It's unsafe.

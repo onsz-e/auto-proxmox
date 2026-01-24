@@ -20,7 +20,7 @@ What do you want to do?
         curl -sSL https://raw.githubusercontent.com/onsz-e/auto-proxmox/main/src/basic-pve-configuration.sh | bash
         ;;
     *)
-        echo "There is no such option."
+        echo "There is no such option!"
         ;;
     esac
 }
