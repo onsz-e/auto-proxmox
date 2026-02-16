@@ -8,8 +8,8 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-# Global Environemnt variables:
-GITHUB_URL="https://raw.githubusercontent.com/onsz-e/auto-proxmox/main/src"
+# Load user env variables:
+set -a; . ./.env; set +a
 
 # Print a log a message with timestamp.
 log ()
@@ -164,6 +164,19 @@ update_motd() {
     chmod +x /etc/update-motd.d/99-proxmox
 }
 
+get_snippets() {
+    mkdir -p $SNIPPETS_DIR
+    curl -sS -fL "$GITHUB_URL"/scripts/snippets/qemu-guest-agent.yml > "$SNIPPETS_DIR"/qemu-guest-agent.yml
+}
+
+cloud_init_image() {
+    curl -sSL "$GITHUB_URL"/scripts/cloud-init.sh | bash
+}
+
+create_terraform_user() {
+    curl -sSL "$GITHUB_URL"/scripts/terraform-pxoxmox-init.sh | bash
+}
+
 # Root bashrc configuration.
 bashrc_conf() {
     local BASHRC_FILE="/root/.bashrc"
@@ -191,6 +204,9 @@ main() {
     datacenter_firewall
     update_motd
     cron_jobs
+    get_snippets
+    cloud_init_image
+    create_terraform_user
     bashrc_conf
     reboot_pve
 }
