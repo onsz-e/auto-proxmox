@@ -1,0 +1,30 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+packages:
+  - qemu-guest-agent
+
+write_files:
+  - path: /etc/ssh/sshd_config.d/10-auth.conf
+    permissions: '0644'
+    content: |
+      PubkeyAuthentication yes
+      PasswordAuthentication no
+      KbdInteractiveAuthentication no
+      UsePAM yes
+
+  - path: /etc/ssh/sshd_config.d/20-root.conf
+    permissions: '0644'
+    content: |
+      PermitRootLogin no
+
+  - path: /etc/ssh/sshd_config.d/30-hardening.conf
+    permissions: '0644'
+    content: |
+      MaxAuthTries 3
+      LoginGraceTime 30
+      X11Forwarding no
+
+runcmd:
+  - systemctl enable --now qemu-guest-agent
+  - systemctl reload ssh || systemctl restart ssh

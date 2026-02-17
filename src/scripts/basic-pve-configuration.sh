@@ -166,7 +166,8 @@ update_motd() {
 
 get_snippets() {
     mkdir -p $SNIPPETS_DIR
-    curl -sS -fL "$GITHUB_URL"/scripts/snippets/qemu-guest-agent.yml > "$SNIPPETS_DIR"/qemu-guest-agent.yml
+    curl -sS -fL "$GITHUB_URL"/scripts/snippets/default-vm.yml > "$SNIPPETS_DIR"/default-vm.yml
+    curl -sS -fL "$GITHUB_URL"/scripts/snippets/ansible-controler.yml > "$SNIPPETS_DIR"/ansible-controler.yml
 }
 
 cloud_init_image() {
