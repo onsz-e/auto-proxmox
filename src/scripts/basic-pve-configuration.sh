@@ -194,25 +194,39 @@ reboot_pve() {
     fi
 }
 
-# Main Function to run everything.
-main() {
+cluster_check() {
+    [ -f /etc/pve/corosync.conf ]
+}
+
+fresh_instance() {
+    datacenter_firewall
+    create_terraform_user
+}
+
+clustered_instance() {
     root_check
     pve_version_check
     add_pve_repositories
     update_pve
     enable_smart
     configure_ssh
-    datacenter_firewall
     update_motd
     cron_jobs
     get_snippets
     cloud_init_image
-    create_terraform_user
     bashrc_conf
-    reboot_pve
 }
 
-main
+# Main Function to run everything.
+if cluster_check; then
+    log "Cluster detected – skipping some configuration"
+    clustered_instance
+else
+    log "Fresh instance - Applly entire configuration"
+    clustered_instance
+    fresh_instance
+    reboot_pve
+fi
 
 ### Extended version
 # 1. Adding SSH key mechanism - user input
