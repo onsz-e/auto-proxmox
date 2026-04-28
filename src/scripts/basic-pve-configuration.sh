@@ -178,6 +178,10 @@ create_terraform_user() {
     curl -sSL "$GITHUB_URL"/scripts/terraform-pxoxmox-init.sh | bash
 }
 
+create_ansible_user() {
+    curl -sSL "$GITHUB_URL"/scripts/ansible-pxoxmox-init.sh | bash
+}
+
 # Root bashrc configuration.
 bashrc_conf() {
     local BASHRC_FILE="/root/.bashrc"
@@ -201,6 +205,7 @@ cluster_check() {
 fresh_instance() {
     datacenter_firewall
     create_terraform_user
+    create_ansible_user
 }
 
 clustered_instance() {
