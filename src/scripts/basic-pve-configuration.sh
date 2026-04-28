@@ -175,11 +175,11 @@ cloud_init_image() {
 }
 
 create_terraform_user() {
-    curl -sSL "$GITHUB_URL"/scripts/terraform-pxoxmox-init.sh | bash
+    curl -sSL "$GITHUB_URL"/scripts/terraform-proxmox-init.sh | bash
 }
 
 create_ansible_user() {
-    curl -sSL "$GITHUB_URL"/scripts/ansible-pxoxmox-init.sh | bash
+    curl -sSL "$GITHUB_URL"/scripts/ansible-proxmox-init.sh | bash
 }
 
 # Root bashrc configuration.
